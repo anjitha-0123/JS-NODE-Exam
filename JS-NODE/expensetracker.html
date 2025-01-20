@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+</head>
+<body>
+    <div></div>
+    <h1> Expense Tracker</h1>
+    <label>Expense Type :</label>
+    <select id="select" onchange="inputbox()">
+        <option value="Food">Food</option>
+        <option value="Dress">Dress</option>
+        <option value="Grocery">Grocery</option>
+        <option value="Hospital">Hospital</option>
+        <option value="Transport">Transport</option>
+        <option value="Others">Others</option>
+    </select><br><br>
+    <input type="text" id="other" style="display:none;">     
+    <label>Amount : </label>
+    <input type="number" id="amount"><br><br> 
+    <label>Date : </label>
+    <input type="text" id="day"><br><br>
+    <button onclick="handleexpense()">Submit</button> <br><br> <br><br> 
+
+    <ul id="preview"></ul>
+
+    <div>
+        <select id="month">
+            <option>January</option>
+            <option>February</option>
+            <option>March</option>
+            <option>April</option>
+            <option>May</option>
+            <option>June</option>
+            <option>July</option>
+            <option>August</option>
+            <option>September</option>
+            <option>October</option>
+            <option>November</option>
+            <option>December</option>
+
+        </select>
+        <button onclick="Showexpense()">Show Expense</button>
+        <p id="show"></p>
+        
+    </div>
+    
+</body>
+
+<script>
+let type_array=[];
+let amount_array=[];
+let date_array=[];
+ 
+ function handleexpense(){
+    let expense=document.getElementById("select").value;
+    let amount= parseInt(document.getElementById("amount").value); 
+    let date=document.getElementById("day").value;
+    let showex=document.getElementById("preview");
+
+       
+     
+           type_array.push(expense);
+           amount_array.push(amount);
+           date_array.push(date);
+        
+
+           let list=document.createElement("li");
+           list.innerHTML=`${expense}<br> Amount: ${amount}<br> Date : ${date}`
+
+           showex.appendChild(list);  
+           
+                 
+    }
+
+    function inputbox()
+    {
+        let otherss=document.getElementById("other");
+
+        if(option.value=="Others")
+        {
+            otherss.style.display="block";
+        }
+        else
+        {
+          alert(`choose valid option`)
+        }
+        
+    }
+
+    function Showexpense()
+    {
+     
+       let amounts=amount_array;
+
+        Total=0;
+        for(i=0;i<amounts.length;i++){
+            Total=Total+amounts[i];
+        }
+        
+
+        document.getElementById("show").innerHTML=`Total Expense is : ${Total}`;
+
+    }
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
